@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+<!--  <link rel="style"href="styles.css">-->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+    html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.login {
+    background: rgba(0, 0, 0, 0.6); /* transparent */
+    padding: 40px;
+    border-radius: 10px;
+}
+
+
+h1{
+    margin-left: 100px;
+}
+input{
+    width:70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-bottom: 4px solid black;
+    }
+button{
+        background-color: #4CAF50; /* Green */
+        margin : auto;
+        color: white;
+        padding: 15px 100px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left:170px
+}
+#predi{
+    margin-left:60px;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+ <div class="login">
+	<h1>Crop Prediction Model</h1>
+    <!-- N	P	K	temperature	humidity	ph	rainfall	label -->
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="Nitrogen" placeholder="Nitrogen" required="required" />
+        <input type="text" name="Phosphorus" placeholder="Phosphorus" required="required" />
+		<input type="text" name="Potassium" placeholder="Potassium" required="required" />
+        <input type="text" name="temperature" placeholder="temperature" required="required" />
+        <input type="text" name="humidity" placeholder="humidity" required="required" />
+		<input type="text" name="pH" placeholder="pH" required="required" />
+        <input type="text" name="rainfall" placeholder="rainfall" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+     <h1 id="predi">
+   {{ prediction_text }}
+     </h1>
+
+ </div>
+
+
+</body>
+</html>
